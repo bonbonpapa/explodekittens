@@ -1,12 +1,12 @@
 class Player { 
     constructor(root) { 
         this.x = 2 * PLAYER_WIDTH 
-        let y = GAME_HEIGHT - PLAYER_HEIGHT - 10 
+        this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10 
         this.domElement = document.createElement("img") 
         this.domElement.src = "images/player.png" 
         this.domElement.style.position = "absolute" 
         this.domElement.style.left = this.x + "px" 
-        this.domElement.style.top = y + "px" 
+        this.domElement.style.top = this.y + "px" 
         this.domElement.style.zIndex = "10" 
         root.appendChild(this.domElement) 
     } 
@@ -22,4 +22,16 @@ class Player {
         } 
         this.domElement.style.left = this.x + "px" 
     } 
+    moveUp() { 
+        if (this.y - PLAYER_HEIGHT > 0) { 
+            this.y = this.y - PLAYER_HEIGHT 
+        } 
+        this.domElement.style.top = this.y + "px" 
+    } 
+    moveDown() {
+        if (this.y + PLAYER_HEIGHT < GAME_HEIGHT -10){
+            this.y = this.y + PLAYER_HEIGHT
+        }
+        this.domElement.style.top = this.y + "px"
+    }
 } 
