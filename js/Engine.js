@@ -10,6 +10,9 @@ class Engine {
        this.enemies.forEach(enemy => {
          enemy.update(timeDiff);
        });
+       // to add the count of the destroyed enemies
+       this.score += this.enemies.filter(enemy => { return enemy.destroyed}).length;
+
        this.enemies = this.enemies.filter(enemy => {
          return !enemy.destroyed;
        });
@@ -31,13 +34,17 @@ class Engine {
          window.alert("Game over");
          return;
        }
-       this.score = this.score + 1;
-       console.log(this.score);
+       
        this.scoreText.update("" + this.score);
        setTimeout(this.gameLoop, 20);
   
   };
   isPlayerDead = () => {
+    for (let i = 0; i < this.enemies.length ; i++) 
+    {
+      if (this.player.x >= this.enemies[i].x && this.player.x <= this.enemies[i].x + ENEMY_WIDTH && this.player.y > this.enemies[i].y && this.player.y < this.enemies[i].y + ENEMY_HEIGHT)
+      return true;
+    }
     return false;
   };
   constructor(theRoot) {
@@ -47,6 +54,7 @@ class Engine {
     this.scoreText = new Text(this.root, (GAME_WIDTH - 100) + "px", "10px");   
     console.log("after")
     this.score = 0;
+    this.lost = 0;
     this.enemies = [];
     addBackground(this.root);
   }

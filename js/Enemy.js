@@ -1,7 +1,7 @@
 class Enemy { 
         update(timeDiff) { 
-                let rate = 1.01;
-                this.accele(rate); 
+                // let rate = 1.01;
+                // this.accele(rate); 
                 this.y = this.y + timeDiff * this.speed 
                 this.x = this.x + (timeDiff * this.speed) * this.diag
                 this.domElement.style.top = this.y + "px" 
