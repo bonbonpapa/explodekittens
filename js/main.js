@@ -15,3 +15,14 @@ let keydownHandler = event => {
 } 
 document.addEventListener("keydown", keydownHandler) 
 gameEngine.gameLoop() 
+
+const intervalId = setInterval(() => {
+    if(MAX_ENEMIES < 5) {
+         MAX_ENEMIES++;
+    // GAME_WIDTH =  (MAX_ENEMIES + 2) * ENEMY_WIDTH;
+    // document.getElementById('bg').remove();
+    // document.getElementById('whiteBox').remove();
+    // addBackground(gameEngine.root);
+    }
+    else clearInterval(intervalId)    
+}, 10000);

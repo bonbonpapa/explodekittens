@@ -12,11 +12,15 @@ let nextEnemySpot = enemies => {
 } 
 let addBackground = root => {        
         let bg = document.createElement("img") 
-        bg.src = "images/stars.png" 
+        bg.src = "images/giphy.gif" 
         bg.style.height = GAME_HEIGHT + "px" 
         bg.style.width = GAME_WIDTH + "px" 
+        bg.style.objectFit = "cover"
+        bg.style.objectPosition = "left"
+        bg.id = "bg"
         root.append(bg) 
         let whiteBox = document.createElement("div") 
+        whiteBox.id = "whiteBox"
         whiteBox.style.zIndex = 100 
         whiteBox.style.position = "absolute" 
         whiteBox.style.top = GAME_HEIGHT + "px" 
