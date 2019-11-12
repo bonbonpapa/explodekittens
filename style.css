@@ -1,0 +1,16 @@
+#container {
+    height: 800px;
+    width: 1280px;
+    display: flex-start;
+    justify-content: center;
+    background: url('images/super_mario.gif');
+    background-size: cover;
+    background-position: left bottom;
+}
+
+
+
+
+
+
+

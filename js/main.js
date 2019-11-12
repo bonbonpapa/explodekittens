@@ -19,7 +19,7 @@ gameEngine.gameLoop()
 const intervalId = setInterval(() => {
     if(MAX_ENEMIES < 5) {
          MAX_ENEMIES++;
-    // GAME_WIDTH =  (MAX_ENEMIES + 2) * ENEMY_WIDTH;
+     GAME_WIDTH = Math.max(500, (MAX_ENEMIES + 2) * ENEMY_WIDTH);
     // document.getElementById('bg').remove();
     // document.getElementById('whiteBox').remove();
     // addBackground(gameEngine.root);

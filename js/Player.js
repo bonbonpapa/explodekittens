@@ -3,7 +3,9 @@ class Player {
         this.x = 2 * PLAYER_WIDTH 
         this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10 
         this.domElement = document.createElement("img") 
-        this.domElement.src = "images/player.png" 
+        this.domElement.src = "images/supermario.png" 
+        this.domElement.style.width = PLAYER_WIDTH
+        this.domElement.style.height = PLAYER_HEIGHT
         this.domElement.style.position = "absolute" 
         this.domElement.style.left = this.x + "px" 
         this.domElement.style.top = this.y + "px" 
