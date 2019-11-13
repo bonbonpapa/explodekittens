@@ -50,15 +50,34 @@ class Engine {
       return;
     }
 
-    // can update here the scoreText.style. x location when the scores
-    if(this.score > 10000)
+    if(this.isPlayerWin())
     {
-      this.scoreText.domElement.style.left = (GAME_WIDTH - 80) + "px";
+      let msgGame = new Text(
+        this.root,
+        GAME_WIDTH / 2 - 100 + "px",
+        GAME_HEIGHT / 2 - 50 + "px"
+      );
+      msgGame.domElement.style.width = "200px"
+      msgGame.update("You win!");
+      return;
     }
 
-    this.scoreText.update("" + this.score);
+    // can update here the scoreText.style. x location when the scores
+    // if(this.score > 10000)
+    // {
+    //   this.scoreText.domElement.style.left = (GAME_WIDTH - 80) + "px";
+    // }
 
-    setTimeout(this.gameLoop, 20);
+    // this.scoreText.update("" + this.score);
+    this.scoreBulletin.update("" + this.score);
+
+    document.getElementById("progress").style.width = Math.min(100, Math.floor((this.score / 30000 *100)))+ "%"; 
+    document.getElementById("mushprogress").style.width = Math.min(100, Math.floor(this.mushscore / 30 * 100))+ "%";
+    
+
+    
+
+    let timeOutLoop = setTimeout(this.gameLoop, 20);
   };
   isPlayerDead = () => {
     for (let i = 0; i < this.enemies.length; i++) {
@@ -75,6 +94,11 @@ class Engine {
     }
     return false;
   };
+  isPlayerWin = () => {
+      if ((this.score / 6000 *100) >=100 && this.mushscore >= 20 ) return true;
+         
+    return false;
+  };
   isFriendEaten = () => {
     for (let i = 0; i < this.friends.length; i++) {
       const friend = this.friends[i];
@@ -85,6 +109,9 @@ class Engine {
         this.player.y <= friend.y + FRIEND_HEIGHT
       ) {
         this.friends[i].destroyed = true;
+
+        this.mushscore += 1;
+        
       }
     }
   }
@@ -93,8 +120,13 @@ class Engine {
     this.root.style.position = "relative"
 
     this.player = new Player(this.root);
-    this.scoreText = new Text(this.root, GAME_WIDTH - 60 + "px", "10px");
+    // this.scoreText = new Text(this.root, GAME_WIDTH - 60 + "px", "10px");
+    this.scoreBulletin = new Text(document.getElementById('sa'));
+    this.scoreMu = new Bulletin(document.getElementById('mu'));
+    document.getElementById("progress").style.width = "0%";
+    document.getElementById("mushprogress").style.width = "0%";
     this.score = 0;
+    this.mushscore = 0;
     this.enemies = [];
     this.friends = [];
     this.speedModifier = 1;

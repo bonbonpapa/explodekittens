@@ -13,8 +13,10 @@ let keydownHandler = event => {
         gameEngine.player.moveDown()
     }
 } 
-document.addEventListener("keydown", keydownHandler) 
-gameEngine.gameLoop() 
+
+document.addEventListener("keydown", keydownHandler);
+gameEngine.gameLoop();
+
 
 const intervalId = setInterval(() => {
     if(MAX_ENEMIES < 5) {
